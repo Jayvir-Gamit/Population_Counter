@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="populationModelStoreContainer" CdmEntityContainer="populationEntities">
+    <EntitySetMapping Name="Families">
+      <EntityTypeMapping TypeName="populationModel.Family">
+        <MappingFragment StoreEntitySet="Family">
+          <ScalarProperty Name="houseNo" ColumnName="houseNo" />
+          <ScalarProperty Name="male" ColumnName="male" />
+          <ScalarProperty Name="female" ColumnName="female" />
+          <ScalarProperty Name="child" ColumnName="child" />
+          <ScalarProperty Name="totalPerson" ColumnName="totalPerson" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Villages">
+      <EntityTypeMapping TypeName="populationModel.Village">
+        <MappingFragment StoreEntitySet="Village">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="pincode" ColumnName="pincode" />
+          <ScalarProperty Name="taluka" ColumnName="taluka" />
+          <ScalarProperty Name="district" ColumnName="district" />
+          <ScalarProperty Name="states" ColumnName="states" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Streets">
+      <EntityTypeMapping TypeName="populationModel.Street">
+        <MappingFragment StoreEntitySet="Street">
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

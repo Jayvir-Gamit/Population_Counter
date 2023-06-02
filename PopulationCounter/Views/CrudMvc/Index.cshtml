@@ -1,0 +1,155 @@
+﻿@model IEnumerable<PopulationCounter.Models.Family>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 style="text-align: center; border: 2px solid #2f9400; border-radius: 10px; background-color: #a2faba; font-family: Arial; color: #02330f; font-weight: bold; padding:10px;">Details of Families</h2>
+<script>
+    var res = 0, res1;
+</script>
+<table id="tableId" class="table" style="border: 2px solid #02c4bb;">
+    <tr style="background-color: #02c4bb;">
+        <th>
+            @Html.DisplayName("House No")
+        </th>
+        <th>
+            @Html.DisplayName("Total Persons")
+        </th>
+        <th>
+            @Html.DisplayName("Total Male")
+        </th>
+        <th>
+            @Html.DisplayName("Total Female")
+        </th>
+        <th>
+            @Html.DisplayName("Total Child")
+        </th>
+        <th>
+            @Html.DisplayName("Street")
+        </th>
+        <th>
+            @Html.DisplayName("Village")
+        </th>
+        <th>
+            @Html.DisplayName("Taluka")
+        </th>
+        <th>
+            @Html.DisplayName("District")
+        </th>
+        <th>
+            @Html.DisplayName("State")
+        </th>
+        <th>
+            @Html.DisplayName("Pincode")
+        </th>
+        <th>
+            @Html.DisplayName("Action")
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr style="background-color: #8eede8; border-bottom: 2px solid #02c4bb;">
+            <td>
+                @Html.DisplayFor(modelItem => item.houseNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.totalPerson)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.totalMale)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.totalFemale)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.totalChild)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.street)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.village)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.taluka)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.district)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.state)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.pincode)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.houseNo }, new { @class = "btn btn-success" }) |
+                @Html.ActionLink("Details", "Details", new { id = item.houseNo }, new { @class = "btn btn-primary" }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.houseNo }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div>
+    <em id="p" class="pop">Total Population of Village is: <b id="add" class="pop"></b></em>
+
+    <style>
+        .pop {
+            font-size: large;
+            font-family: Consolas;
+            font-weight: bold;
+            color: darkorange;
+        }
+
+        #p {
+            border-left: 5px solid orange;
+            padding-left: 8px;
+            border-right: 5px solid orange;
+            padding-right: 8px;
+        }
+
+        #p:hover {
+            border-left: hidden;
+            border-right: hidden;
+            border-top: 5px solid orange;
+            border-bottom: 5px solid orange;
+            padding-top: 8px;
+            padding-bottom: 8px;
+        }
+    </style>
+
+    <script>
+        var table = document.getElementById("tableId");
+        var tRowCount = table.rows.length;
+        console.log(tRowCount - 1);
+
+
+    </script>
+
+    @foreach (var item in Model)
+    {
+
+        <script>
+            res1 = @Html.DisplayFor(modelItem => item.totalPerson);
+            res += res1;
+            document.getElementById("add").innerHTML = res;
+            console.log(res);
+        </script>
+    }
+
+
+</div>
+</br>
+
+<div>
+    @Html.ActionLink("Add New Family", "Create", null, new { @class = "btn btn-primary" })
+</div>
+
+
+@*<div>
+        @Html.ActionLink("Get", "DetailsByPincode", "CrudMvc", new { @class = "btn btn-success" })
+</div>*@

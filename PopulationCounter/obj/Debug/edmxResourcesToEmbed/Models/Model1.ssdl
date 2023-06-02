@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="populationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Family">
+    <Key>
+      <PropertyRef Name="houseNo" />
+    </Key>
+    <Property Name="houseNo" Type="int" Nullable="false" />
+    <Property Name="male" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="female" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="child" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="totalPerson" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'population.dbo.Street' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Street">
+    <Key>
+      <PropertyRef Name="name" />
+    </Key>
+    <Property Name="name" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Village">
+    <Key>
+      <PropertyRef Name="name" />
+    </Key>
+    <Property Name="name" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="pincode" Type="int" Nullable="false" />
+    <Property Name="taluka" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="district" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="states" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="populationModelStoreContainer">
+    <EntitySet Name="Family" EntityType="Self.Family" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Village" EntityType="Self.Village" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Street" EntityType="Self.Street" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Street].[name] AS [name]
+    FROM [dbo].[Street] AS [Street]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    
+</head>
+<body style="background-image:url('../../images/vil2.jpg'); background-repeat:no-repeat; background-attachment:fixed; background-size:cover;">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Population Counter", "Index", "CrudMvc", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "./CrudMvc/Index", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("Pincode", "Index", "./CrudMvc/Index", new { area = "" }, new { @id = "PinId" })</li>
+                    @*<li><a id="PinId">Pincode</a></li>*@
+                    <li>@Html.ActionLink("Village", "Index", "./CrudMvc/Index", new { area = "" }, new { @id = "VilId" })</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // For Pincode
+        document.getElementById("PinId").onclick = function () { myFunction() }
+
+        function myFunction() {
+            let VlPin = prompt("Please enter pincode", "394110");
+
+            if (VlPin.length == 6) {
+                //alert("Valid pinode.");
+                window.open("https://localhost:44367/CrudMvc/DetailsByPincode?pin=" + VlPin);
+            }
+            //else if (VlPin.length > 6) {
+            //    alert("Invalid pinode.");
+            //}
+            else {
+                alert("Please enter valid pinode.");
+            }
+        }
+
+        // For Village
+        document.getElementById("VilId").onclick = function () { myFunction1() }
+
+        function myFunction1() {
+            let Vlname = prompt("Please enter village name", "Jamankuva");
+
+            if (Vlname.length > 0) {
+                //alert("Valid pinode.");
+                window.open("https://localhost:44367/CrudMvc/DetailsByVillage?vil=" + Vlname);
+            }
+            //else if (VlPin.length > 6) {
+            //    alert("Invalid pinode.");
+            //}
+            else {
+                alert("Please enter valid village name.");
+            }
+        }
+    </script>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer style="color:white;">
+            <p>Copyright &copy; @DateTime.Now.Year - All rights reserved. Population Counter.</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+
+</html>
